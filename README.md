@@ -1,75 +1,90 @@
-# Used Car Price Prediction
+# Used Car Price Prediction Project Report
 
-This project uses machine learning techniques to predict the selling price of used cars based on various features such as mileage, engine capacity, maximum power, seats, vehicle age, and kilometers driven. The dataset used in this project contains various car attributes, and a Random Forest Regressor model is employed to predict the price of the car.
+## Overview
 
-## Features
+This project aims to predict the selling price of used cars based on various features such as mileage, engine capacity, maximum power, number of seats, vehicle age, and kilometers driven. The project utilizes a machine learning approach, where we implement a Random Forest Regressor model to predict the price of a car based on its characteristics.
 
-- **Mileage**: The car's fuel efficiency in km/l.
-- **Engine**: The engine capacity in CC.
-- **Max Power**: The maximum power of the car in BHP.
-- **Seats**: The number of seats in the car.
-- **Vehicle Age**: The number of years the car has been used.
-- **Km Driven**: The total number of kilometers driven by the car.
+The project is executed using **Google Colab**, leveraging Python libraries such as Pandas, NumPy, Scikit-learn, Seaborn, and Matplotlib for data processing, visualization, and machine learning. The dataset used in this project is from the `cardekho_dataset.csv` file, which contains information about various used cars and their selling prices.
 
-## Technologies Used
+## Table of Contents
 
-- Python
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
-- Scikit-learn
-- Google Colab (for file uploads)
+1. [Introduction](#introduction)
+2. [Dataset Overview](#dataset-overview)
+3. [Data Preprocessing](#data-preprocessing)
+4. [Feature Engineering](#feature-engineering)
+5. [Modeling](#modeling)
+6. [Evaluation Metrics](#evaluation-metrics)
+7. [User Input and Prediction](#user-input-and-prediction)
+8. [Conclusion](#conclusion)
 
-## Installation and Setup
+## Introduction
 
-1. **Clone the repository**:
-    ```bash
-    git clone <repository_url>
-    cd used-car-price-prediction
-    ```
+The goal of this project is to develop a model that can predict the selling price of used cars based on several features. The model will help users get an estimate of the price of a used car before making a purchase. To achieve this, we use a Random Forest Regressor model and preprocess the data for better accuracy and performance.
 
-2. **Install dependencies**:
-    Ensure you have Python 3.x installed. Then install the necessary packages:
-    ```bash
-    pip install pandas numpy matplotlib seaborn scikit-learn
-    ```
+## Dataset Overview
 
-3. **Upload Dataset**:
-    - The dataset (`cardekho_dataset.csv`) should be uploaded through Google Colab when running the code, or you can manually place the dataset in the project directory.
+The dataset used for this project contains the following columns:
 
-4. **Run the Script**:
-    - Open the `used_car_price_prediction.py` script in any IDE or run it directly in Jupyter Notebook/Google Colab.
-    - The script will preprocess the data, train a model, and predict the price based on user input.
+- `selling_price`: The target variable (selling price of the car)
+- `mileage`: Mileage of the car (in km/l)
+- `engine`: Engine capacity of the car (in CC)
+- `max_power`: Maximum power of the car (in BHP)
+- `seats`: Number of seats in the car
+- `vehicle_age`: Age of the car (in years)
+- `km_driven`: Total kilometers driven by the car
+- `brand`, `model`, `seller_type`, `fuel_type`, `transmission_type`: Categorical features indicating the brand, model, seller type, fuel type, and transmission type.
 
-## Steps
+## Data Preprocessing
 
-1. **Data Preprocessing**:
-    - Missing values in columns like mileage, engine capacity, max power, and seats are handled using median imputation.
-    - The vehicle age is extracted from the `vehicle_age` column, which includes text and numeric values.
-    - New features like mileage per year and kilometers driven per year are derived.
+### Handling Missing Values
+We handle missing values by filling them with the median of the respective columns. This is done for the following columns:
+- `mileage`
+- `engine`
+- `max_power`
+- `seats`
 
-2. **Correlation Analysis**:
-    - A correlation heatmap is displayed to show the relationships between different features and the target variable (selling price).
-    - Features strongly correlated with the target are identified for model training.
+### Feature Extraction
+- **Vehicle Age**: The `vehicle_age` column is extracted by converting the textual format (e.g., "5 years") into numerical values (e.g., 5).
+- **Mileage per Year**: We create a new feature `mileage_per_year` by dividing the mileage by the vehicle age.
+- **Kilometers per Year**: A new feature `km_per_year` is created by dividing the kilometers driven by the vehicle age.
 
-3. **Model Training**:
-    - The data is split into training and testing sets.
-    - The data is standardized using `StandardScaler`.
-    - A Random Forest Regressor model is trained on the scaled training data.
+### Outlier Removal
+The dataset is filtered to remove outliers from the `selling_price` using the Interquartile Range (IQR) method.
 
-4. **Model Evaluation**:
-    - The model's performance is evaluated using various metrics: Mean Absolute Error (MAE), Mean Squared Error (MSE), Root Mean Squared Error (RMSE), and R-squared (R2).
+### Encoding Categorical Variables
+Categorical features such as `brand`, `model`, `seller_type`, `fuel_type`, and `transmission_type` are encoded using **Label Encoding**.
 
-5. **Car Price Prediction**:
-    - The script prompts the user for car details (mileage, engine capacity, max power, seats, vehicle age, and kilometers driven).
-    - It calculates additional features like mileage per year and km per year.
-    - The trained model predicts the selling price based on the entered details.
+## Feature Engineering
 
-## Example Input/Output
+After preprocessing the data, we perform correlation analysis to identify the features that are most strongly correlated with the target variable (`selling_price`). Features with strong correlations (above a threshold of 0.5) are selected for modeling.
 
-### Input:
+Additionally, highly correlated features (with correlation greater than 0.9) are checked and removed if necessary.
+
+## Modeling
+
+The machine learning model used for predicting the selling price of the car is **Random Forest Regressor**. We split the dataset into training and testing sets (80% training and 20% testing) using **train_test_split** from Scikit-learn.
+
+We standardize the features using **StandardScaler** to ensure the model performs optimally.
+
+The model is trained on the scaled training data and then tested on the scaled testing data to evaluate its performance.
+
+## Evaluation Metrics
+
+The model's performance is evaluated using the following metrics:
+- **Mean Absolute Error (MAE)**
+- **Mean Squared Error (MSE)**
+- **Root Mean Squared Error (RMSE)**
+- **R-squared (R2)**
+
+These metrics help assess how well the model predicts the car prices and how close the predictions are to the actual values.
+
+## User Input and Prediction
+
+After training the model, the user can input the details of a car (such as mileage, engine capacity, maximum power, etc.) through the console. The model will then predict the selling price of the car based on these inputs.
+
+### Sample Input:
 ```
+Enter the details of the car:
 Enter the mileage (in km/l): 15.0
 Enter the engine capacity (in CC): 1500
 Enter the maximum power (in BHP): 100.0
@@ -78,44 +93,26 @@ Enter the vehicle age (in years): 5
 Enter the total kilometers driven: 50000
 ```
 
-### Output:
-```
-Car Details:
-Mileage: 15.0 km/l
-Engine Capacity: 1500 CC
-Maximum Power: 100.0 BHP
-Number of Seats: 5
-Vehicle Age: 5 years
-Kilometers Driven: 50000
-Derived Mileage per Year: 3.00
-Derived Kilometers per Year: 10000.00
-
-Predicted Selling Price: ₹8,50,000.00
-```
-
-## Performance Metrics
-
-The model's performance is evaluated using the following metrics:
-
-- **Mean Absolute Error (MAE)**: The average absolute difference between predicted and actual values.
-- **Mean Squared Error (MSE)**: The average squared difference between predicted and actual values.
-- **Root Mean Squared Error (RMSE)**: The square root of the MSE, which gives an idea of the magnitude of errors.
-- **R-squared (R2)**: A measure of how well the model explains the variance in the target variable.
+The predicted selling price will be displayed in INR.
 
 ## Conclusion
 
-This project demonstrates how machine learning can be used to predict the selling price of used cars based on key features. By applying regression techniques, the model provides accurate price estimates based on user inputs. 
+This project provides a practical approach to predicting the selling price of used cars using machine learning. By applying Random Forest Regressor and performing extensive data preprocessing, we can provide a reasonably accurate estimate of the selling price based on the car's features. This tool can be used by potential buyers or sellers of used cars to assess fair pricing before making decisions.
 
-## Future Improvements
+## Requirements
 
-- Experimenting with different models like XGBoost or Gradient Boosting Regressor.
-- Adding more features such as car brand and model-specific data.
-- Implementing more advanced data preprocessing techniques to improve model accuracy.
+- Google Colab for running the project
+- Python 3.x
+- Required libraries:
+  - Pandas
+  - NumPy
+  - Matplotlib
+  - Seaborn
+  - Scikit-learn
 
-## License
+## Running the Project
 
-This project is licensed under the MIT License.
+1. Upload the dataset (`cardekho_dataset.csv`) to Google Colab.
+2. Run the provided Python script.
+3. Enter the details of a car when prompted to get the predicted selling price.
 
----
-
-Let me know if you need any changes or additional sections!
