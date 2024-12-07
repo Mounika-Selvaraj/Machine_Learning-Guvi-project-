@@ -1,17 +1,17 @@
-Used Car Price Prediction
- 
+# Used Car Price Prediction
+
 This project uses machine learning techniques to predict the selling price of used cars based on various features such as mileage, engine capacity, maximum power, seats, vehicle age, and kilometers driven. The dataset used in this project contains various car attributes, and a Random Forest Regressor model is employed to predict the price of the car.
 
-Features
+## Features
 
-Mileage    : The car's fuel efficiency in km/l.
-Engine     : The engine capacity in CC.
-Max Power  : The maximum power of the car in BHP.
-Seats      : The number of seats in the car.
-Vehicle Age: The number of years the car has been used.
-Km Driven  : The total number of kilometers driven by the car.
+- **Mileage**: The car's fuel efficiency in km/l.
+- **Engine**: The engine capacity in CC.
+- **Max Power**: The maximum power of the car in BHP.
+- **Seats**: The number of seats in the car.
+- **Vehicle Age**: The number of years the car has been used.
+- **Km Driven**: The total number of kilometers driven by the car.
 
-Technologies Used
+## Technologies Used
 
 - Python
 - Pandas
