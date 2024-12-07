@@ -21,18 +21,18 @@ The following libraries and tools are used in this project:
 
 The dataset used in this project is the "cardekho_dataset.csv" file, which contains details about various used cars, including:
 
-- brand: Brand of the car.
-- model: Model of the car.
-- seller_type: Type of seller (individual/dealer).
-- fuel_type: Type of fuel used (petrol/diesel).
-- transmission_type: Type of transmission (manual/automatic).
-- mileage: Mileage of the car (in km/l).
-- engine: Engine capacity (in CC).
-- max_power: Maximum power (in BHP).
-- seats: Number of seats in the car.
-- vehicle_age: Age of the vehicle (in years).
-- km_driven: Total kilometers driven by the car.
-- selling_price: The target variable (selling price of the car).
+- `brand`: Brand of the car.
+- `model`: Model of the car.
+- `seller_type`: Type of seller (individual/dealer).
+- `fuel_type`: Type of fuel used (petrol/diesel).
+- `transmission_type`: Type of transmission (manual/automatic).
+- `mileage`: Mileage of the car (in km/l).
+- `engine`: Engine capacity (in CC).
+- `max_power`: Maximum power (in BHP).
+- `seats`: Number of seats in the car.
+- `vehicle_age`: Age of the vehicle (in years).
+- `km_driven`: Total kilometers driven by the car.
+- `selling_price`: The target variable (selling price of the car).
 
 ## Data Preprocessing
 
@@ -91,7 +91,7 @@ The model predicts the selling price of the car and displays the entered details
 
 ## Example Output
 
-
+```
 Enter the details of the car:
 Enter the mileage (in km/l): 15.0
 Enter the engine capacity (in CC): 1500
@@ -128,7 +128,3 @@ This project provides a comprehensive solution for predicting the selling price 
 1. Upload the dataset (`cardekho_dataset.csv`) to Google Colab.
 2. Copy and paste the provided code into a Google Colab notebook.
 3. Run the code sequentially to preprocess the data, train the model, and predict the selling price of a car.
-
-## License
-
-This project is licensed under the MIT License.
